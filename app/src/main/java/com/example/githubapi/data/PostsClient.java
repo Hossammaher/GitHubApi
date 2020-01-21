@@ -12,7 +12,7 @@ public class PostsClient {
     private PostInterface postInterface;
     private static PostsClient INSTANCE;
 
-    public PostsClient() {
+    private PostsClient() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())

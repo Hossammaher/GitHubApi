@@ -7,5 +7,5 @@ import retrofit2.http.GET;
 
 public interface PostInterface {
     @GET("search/users?q=language:java")
-    public Call<Result> getPosts();
+    Call<Result> getPosts();
 }

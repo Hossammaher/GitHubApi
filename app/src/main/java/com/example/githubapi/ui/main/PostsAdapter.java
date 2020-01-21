@@ -20,9 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHolder> {
+    Context context;
     private List<PostModel> moviesList = new ArrayList<>();
-
-    Context context ;
 
     public PostsAdapter(Context context) {
         this.context = context;
@@ -42,11 +41,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
         Glide.with(context)
                 .load(moviesList.get(position).getAvatarUrl())
                 .into(holder.userImg);
-
-
-
     }
-
     @Override
     public int getItemCount() {
         return moviesList.size();
@@ -58,38 +53,32 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
     }
 
     public class PostViewHolder extends RecyclerView.ViewHolder {
-        TextView username , URL;
-        ImageView userImg ;
+        TextView username, URL;
+        ImageView userImg;
+
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
             username = itemView.findViewById(R.id.userName);
-            userImg=itemView.findViewById(R.id.imageView);
+            userImg = itemView.findViewById(R.id.imageView);
             URL = itemView.findViewById(R.id.URL);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     int pos = getAdapterPosition();
-                    if (pos != RecyclerView.NO_POSITION){
+                    if (pos != RecyclerView.NO_POSITION) {
 
                         PostModel clicked = moviesList.get(pos);
-                        Intent intent = new Intent(context,DetailsActivity.class);
-                        intent.putExtra("login",clicked.getLogin());
-                        intent.putExtra("URL",clicked.getHtmlUrl());
-                        intent.putExtra("Img",clicked.getAvatarUrl());
+                        Intent intent = new Intent(context, DetailsActivity.class);
+                        intent.putExtra("login", clicked.getLogin());
+                        intent.putExtra("URL", clicked.getHtmlUrl());
+                        intent.putExtra("Img", clicked.getAvatarUrl());
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                         Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show();
-
-
                     }
-
-
                 }
             });
-
-
         }
     }
 }
